@@ -1,10 +1,10 @@
-# collector
+# Collector
 Collector - Collects resource information from Kubernetes cluster and passes it on to another service.
 
 # Setup:
 - To run from source code, needs golang installed in the system.
 - git clone <this repo>
-- switch to collector director
+- switch to collector directory
 - execute : go run main.go
 
 # How it works?
