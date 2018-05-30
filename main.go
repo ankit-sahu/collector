@@ -9,9 +9,8 @@ import (
 	"io/ioutil"
 	"bytes"
 	"strings"
-	"github.com/sampler/aidi/collector/collector/config"
-	"github.com/cloudflare/cfssl/log"
 	"time"
+	"github.com/collector/config"
 )
 
 type Resource struct{
@@ -102,7 +101,7 @@ func main(){
 	flag.Lookup("logtostderr").Value.Set("true")
 	appConfig,err := config.Config("/config/appConfig.yaml")
 	if err != nil{
-		log.Error(err.Error())
+		glog.Error(err.Error())
 	}
 
 	for _, item := range appConfig.MetricResources{
