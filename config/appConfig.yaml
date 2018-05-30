@@ -1,10 +1,8 @@
 ---
 clusterUrl: "https://192.168.99.101:8443/"
-token: "Bearer xxS22mJPrOfF_R2ii0W78zLOcnfJKK7z0-9IamQlT50"
-kakfaURL: "https://webhook.site/dd829202-4cd7-4df7-80fb-752679c3c20e"
+token: "Bearer your_cluster_token"
+destinationURL: "https://webhook.site/dd829202-4cd7-4df7-80fb-752679c3c20e"
 interval: 5
 metricResources:
   - name: "events"
-    path: "api/v1/events"
-  - name: "pods"
     path: "api/v1/events"

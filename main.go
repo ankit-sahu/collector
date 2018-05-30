@@ -1,4 +1,4 @@
-package collector
+package main
 
 import (
 	"net/http"
@@ -11,6 +11,7 @@ import (
 	"strings"
 	"github.com/sampler/aidi/collector/collector/config"
 	"github.com/cloudflare/cfssl/log"
+	"time"
 )
 
 type Resource struct{
@@ -109,23 +110,23 @@ func main(){
 		stopChan := make(chan bool)
 		go func(resource Resource){
 			defer close(stopChan)
+			ticker := time.NewTicker(time.Duration(appConfig.Interval) * time.Second)
 			for {
 				select{
-					case <-stopChan:
+					case <- stopChan:
 						glog.Error("terminating goroutine")
-					default:
+					case <- ticker.C:
 						data, err := CollectData(PrepareUrl(appConfig.ClusterURL,resource.Path), appConfig.Token)
 						if err != nil {
 							glog.Info(err)
 						} else {
-							err := PostData(appConfig.KafkaURL,resource.Name, data)
+							err := PostData(appConfig.DestinationURL,resource.Name, data)
 							if err != nil {
 								glog.Info(err)
 							}
 						}
 				}
 			}
-
 		}(resource)
 		<-stopChan
 	}

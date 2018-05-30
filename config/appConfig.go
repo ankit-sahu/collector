@@ -9,7 +9,7 @@ import (
 type AppConfig struct {
 	ClusterURL      string `yaml:"clusterUrl"`
 	Token           string `yaml:"token"`
-	KafkaURL      string `yaml:"kakfaURL"`
+	DestinationURL      string `yaml:"destinationURL"`
 	Interval        int    `yaml:"interval"`
 	MetricResources []struct {
 		Name string `yaml:"name"`
